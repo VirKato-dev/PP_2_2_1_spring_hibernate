@@ -44,4 +44,9 @@ public class Car {
     public void setSeries(Integer series) {
         this.series = series;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Car{series=%d, model='%s'}", series, model);
+    }
 }
