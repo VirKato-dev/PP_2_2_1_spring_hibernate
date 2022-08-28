@@ -26,6 +26,8 @@ public class MainApp {
         List<User> users = userService.listUsers();
         users.forEach(System.out::println);
 
+        System.out.println(userService.get(new Car(300, "BMW")));
+
         context.close();
     }
 }
