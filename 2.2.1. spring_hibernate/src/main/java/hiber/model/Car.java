@@ -13,6 +13,9 @@ public class Car {
 
     private String model;
 
+    @OneToOne(mappedBy = "car")
+    private User user;
+
     public Car() {
     }
 
@@ -48,5 +51,13 @@ public class Car {
     @Override
     public String toString() {
         return String.format("Car{series=%d, model='%s'}", series, model);
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

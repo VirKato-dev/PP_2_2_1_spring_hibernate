@@ -40,6 +40,7 @@ public class UserDaoImp implements UserDao {
         return resultList;
     }
 
+    @Override
     public User getByCar(Car car) {
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.beginTransaction();
