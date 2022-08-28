@@ -6,20 +6,16 @@ import javax.persistence.*;
 @Table(name = "cars")
 public class Car {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    private Integer series;
+    private int series;
 
-    @Column
     private String model;
 
     public Car() {
-
     }
 
-    public Car(Integer series, String model) {
+    public Car(int series, String model) {
         this.series = series;
         this.model = model;
     }
