@@ -39,17 +39,4 @@ public class UserDaoImp implements UserDao {
         transaction.commit();
         return resultList;
     }
-
-    @Override
-    public User getByCar(Car car) {
-        Session session = sessionFactory.getCurrentSession();
-        Transaction transaction = session.beginTransaction();
-        Query query = session.createQuery("from User where id = (select id from Car where series = ?1 and model = ?2)");
-        query.setParameter(1, car.getSeries());
-        query.setParameter(2, car.getModel());
-        User user = (User) query.getSingleResult();
-        transaction.commit();
-        return user;
-    }
-
 }

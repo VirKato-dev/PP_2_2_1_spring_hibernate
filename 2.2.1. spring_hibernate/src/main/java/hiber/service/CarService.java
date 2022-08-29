@@ -9,10 +9,5 @@ public interface CarService {
     void add(Car car);
     List<Car> listCars();
 
-    /***
-     * Получить пользователя непосредственно из записи о машине
-     * @param car по серии и модели
-     * @return пользователь
-     */
-    User getUser(Car car);
+    List<User> listUsers(Car car);
 }
