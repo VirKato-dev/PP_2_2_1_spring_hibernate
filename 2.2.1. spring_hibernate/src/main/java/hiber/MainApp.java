@@ -7,7 +7,6 @@ import hiber.service.CarService;
 import hiber.service.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class MainApp {
@@ -23,12 +22,13 @@ public class MainApp {
         userService.add(new User("User3", "Lastname3", "user3@mail.ru", new Car(200, "VW")));
         userService.add(new User("User4", "Lastname4", "user4@mail.ru", new Car(10, "Lexus")));
 
-        // получаем данные о всех пользователях
+        System.out.println("Все пользователи:\n");
         List<User> users = userService.listUsers();
         users.forEach(System.out::println);
 
-        // ищем пользователей с указанной тачкой
-        carService.listUsers(new Car(100, "BMW")).forEach(System.out::println);
+        Car car = new Car(100, "BMW");
+        System.out.println("Пользователи с машиной:\n" + car + "\n");
+        carService.listUsers(car).forEach(System.out::println);
 
         context.close();
     }
