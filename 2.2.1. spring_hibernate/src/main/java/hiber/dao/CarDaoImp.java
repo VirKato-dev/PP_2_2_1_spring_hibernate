@@ -5,8 +5,10 @@ import hiber.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
@@ -14,21 +16,27 @@ import java.util.List;
 @Repository
 public class CarDaoImp implements CarDao {
 
-    @Autowired
-    private SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
+    @Autowired
+    public CarDaoImp(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
+    @Transactional
     @Override
     public void add(Car car) {
         sessionFactory.getCurrentSession().save(car);
     }
 
+    @Transactional(readOnly = true)
     @Override
-    @SuppressWarnings("unchecked")
     public List<Car> listCars() {
-        TypedQuery<Car> query = sessionFactory.getCurrentSession().createQuery("from Car");
+        Query<Car> query = sessionFactory.getCurrentSession().createQuery("select c from Car c", Car.class);
         return query.getResultList();
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<User> listUsers(Car car) {
         Session session = sessionFactory.getCurrentSession();
