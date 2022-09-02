@@ -32,7 +32,7 @@ public class CarDaoImp implements CarDao {
     @Transactional(readOnly = true)
     @Override
     public List<Car> listCars() {
-        Query<Car> query = sessionFactory.getCurrentSession().createQuery("select c from Car c", Car.class);
+        TypedQuery<Car> query = sessionFactory.getCurrentSession().createQuery("select c from Car c", Car.class);
         return query.getResultList();
     }
 
