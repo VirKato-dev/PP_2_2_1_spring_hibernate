@@ -48,16 +48,16 @@ public class Car {
         this.series = series;
     }
 
-    @Override
-    public String toString() {
-        return String.format("Car{series=%d, model='%s'}", series, model);
-    }
-
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Car{series=%d, model='%s'}", series, model);
     }
 }

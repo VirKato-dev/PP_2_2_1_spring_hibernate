@@ -2,7 +2,6 @@ package hiber.config;
 
 import hiber.model.Car;
 import hiber.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -18,14 +17,13 @@ import java.util.Properties;
 
 
 @Configuration
-@PropertySource("classpath:db.properties")
 @EnableTransactionManagement
+@PropertySource("classpath:db.properties")
 @ComponentScan(value = "hiber")
 public class AppConfig {
 
     private final Environment env;
 
-    @Autowired
     public AppConfig(Environment env) {
         this.env = env;
     }
@@ -47,7 +45,7 @@ public class AppConfig {
 
         Properties props = new Properties();
         props.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
-        props.put("hibernate.current_session_context_class", env.getProperty("hibernate.current_session_context_class"));
+//        props.put("hibernate.current_session_context_class", env.getProperty("hibernate.current_session_context_class"));
         props.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
         props.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
 
