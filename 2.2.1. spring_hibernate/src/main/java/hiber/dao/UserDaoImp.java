@@ -19,13 +19,13 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public void add(User user) {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         session.save(user);
     }
 
     @Override
     public List<User> listUsers() {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         TypedQuery<User> query = session.createQuery("select u from User u", User.class);
         return query.getResultList();
     }
