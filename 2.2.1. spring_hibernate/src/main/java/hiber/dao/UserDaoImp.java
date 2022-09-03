@@ -3,7 +3,6 @@ package hiber.dao;
 import hiber.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
@@ -20,13 +19,13 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public void add(User user) {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         session.save(user);
     }
 
     @Override
     public List<User> listUsers() {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         TypedQuery<User> query = session.createQuery("select u from User u", User.class);
         return query.getResultList();
     }
