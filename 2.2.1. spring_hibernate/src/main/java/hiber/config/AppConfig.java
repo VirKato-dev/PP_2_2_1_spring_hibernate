@@ -43,11 +43,12 @@ public class AppConfig {
         LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
         factoryBean.setDataSource(getDataSource());
 
+        String opt;
         Properties props = new Properties();
-        props.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
-        props.put("hibernate.current_session_context_class", env.getProperty("hibernate.current_session_context_class"));
-        props.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
-        props.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+        props.put(opt = "hibernate.dialect", env.getProperty(opt)); //"hibernate.dialect"));
+        props.put(opt = "hibernate.current_session_context_class", env.getProperty(opt)); //"hibernate.current_session_context_class"));
+        props.put(opt = "hibernate.show_sql", env.getProperty(opt)); //"hibernate.show_sql"));
+        props.put(opt = "hibernate.hbm2ddl.auto", env.getProperty(opt)); //"hibernate.hbm2ddl.auto"));
 
         factoryBean.setHibernateProperties(props);
         factoryBean.setAnnotatedClasses(User.class, Car.class);
