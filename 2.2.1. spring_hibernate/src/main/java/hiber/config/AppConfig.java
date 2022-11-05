@@ -39,7 +39,8 @@ public class AppConfig {
     }
 
     @Bean
-    public LocalSessionFactoryBean getSessionFactory() {
+    // для Hibernate5
+    public LocalSessionFactoryBean getLocalSessionFactory() {
         LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
         factoryBean.setDataSource(getDataSource());
 
@@ -58,7 +59,7 @@ public class AppConfig {
     @Bean
     public HibernateTransactionManager getTransactionManager() {
         HibernateTransactionManager transactionManager = new HibernateTransactionManager();
-        transactionManager.setSessionFactory(getSessionFactory().getObject());
+        transactionManager.setSessionFactory(getLocalSessionFactory().getObject());
         return transactionManager;
     }
 }

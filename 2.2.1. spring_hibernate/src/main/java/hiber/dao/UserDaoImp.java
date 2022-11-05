@@ -20,7 +20,7 @@ public class UserDaoImp implements UserDao {
     @Override
     public void add(User user) {
         Session session = sessionFactory.openSession();
-        session.save(user);
+        session.saveOrUpdate(user);
     }
 
     @Override
